@@ -21,5 +21,16 @@ public class PayrollCalculator {
 
         double grossPay =  hoursWorked * hourlyRate;
 
+        if (hoursWorked > 40) {
+            double regularPay = 40 * hourlyRate;
+            double overtimePay = (hoursWorked - 40) * hourlyRate * 1.5;
+            grossPay = regularPay + overtimePay;
+        } else {
+            grossPay = hoursWorked * hourlyRate;
+        }
+        //Print Results
+        System.out.println("\n--- Payroll Summary ---");
+        System.out.println("Employee Name: " + name);
+        System.out.printf("Gross Pay: $%.2f%n", grossPay);
     }
 }
