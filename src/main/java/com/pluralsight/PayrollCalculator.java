@@ -28,6 +28,7 @@ public class PayrollCalculator {
         } else {
             grossPay = hoursWorked * hourlyRate;
         }
+
         //Print Results
         System.out.println("\n--- Payroll Summary ---");
         System.out.println("Employee Name: " + name);
