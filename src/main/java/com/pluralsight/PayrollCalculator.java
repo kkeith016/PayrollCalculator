@@ -31,7 +31,7 @@ public class PayrollCalculator {
         //Print Results
         System.out.println("\n--- Payroll Summary ---");
         System.out.println("Employee Name: " + name);
-        System.out.println("Gross Pay: $" + grossPay);
+        System.out.printf("Gross Pay: $%.2f%n", grossPay);
 
     }
 }
