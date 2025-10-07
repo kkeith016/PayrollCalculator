@@ -45,4 +45,13 @@ public class Employees {
     public void setPayRate(double payRate) {
         this.payRate = payRate;
     }
+    public double getGrossPay() {
+        // Basic calculation: if hours > 40, overtime is 1.5x pay rate
+        if (hours > 40) {
+            double overtimeHours = hours - 40;
+            return (40 * payRate) + (overtimeHours * payRate * 1.5);
+        } else {
+            return hours * payRate;
+        }
+    }
 }
