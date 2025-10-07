@@ -18,11 +18,12 @@ public class PayrollCalculator {
         String payrollFile = scanner.nextLine();
 
         try {
-            FileReader fileReader = new FileReader("src/main/resources/" + employeeFile);
-            BufferedReader bufferedReader = new BufferedReader(fileReader);
+            // Read the employee file
+            BufferedReader bufferedReader = new BufferedReader(new FileReader("src/main/resources/" + employeeFile));
             bufferedReader.readLine(); // skip header
 
-            FileWriter fileWriter = new FileWriter("src/main/resources/" + payrollFile, true);
+            // Create the payroll file
+            FileWriter fileWriter = new FileWriter("src/main/resources/" + payrollFile);
             fileWriter.write("id|name|gross pay\n"); // write header
 
             String input;
@@ -37,22 +38,15 @@ public class PayrollCalculator {
                 Employees employee = new Employees(id, fullName, hours, payRate);
 
                 // Write to payroll file
-                String line = employee.getId() + "|" + employee.getFullName() + "|" + String.format("%.2f", employee.getGrossPay()) + "\n";
+                String line = employee.getId() + "|" + employee.getFullName() + "|" +
+                        String.format("%.2f", employee.getGrossPay()) + "\n";
                 fileWriter.write(line);
-
-                // Optional: print to console
-                System.out.println("------------Payroll Calculator--------------");
-                System.out.println("Employee ID: " + employee.getId());
-                System.out.println("Employee Full Name: " + employee.getFullName());
-                System.out.println("Employee Hours: " + employee.getHours());
-                System.out.println("Employee Pay Rate: " + employee.getPayRate());
-                System.out.printf("Gross Pay: $%.2f%n", employee.getGrossPay());
-                System.out.println("-----------------------------------------------");
             }
 
             bufferedReader.close();
             fileWriter.close();
-            System.out.println("\nPayroll file created successfully!");
+
+            System.out.println("\nPayroll file created successfully: " + payrollFile);
 
         } catch (IOException e) {
             System.out.println("Error: " + e.getMessage());
